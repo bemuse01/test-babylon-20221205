@@ -1,4 +1,5 @@
 import AppStore from './app.js'
+import AudioStore from './audio.js'
 
 export default Vuex.createStore({
     state: {
@@ -11,5 +12,6 @@ export default Vuex.createStore({
     },
     modules: {
         app: AppStore,
+        audio: AudioStore
     }
 })
