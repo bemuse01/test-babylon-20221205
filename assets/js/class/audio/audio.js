@@ -100,4 +100,11 @@ export default class{
     getProgress(){
         return this.audio.currentTime / this.audio.duration
     }
+
+
+    // set
+    setCurrentTime(time = 0){
+        // 0 <= time <= 1 
+        this.audio.currentTime = time * this.audio.duration
+    }
 }
