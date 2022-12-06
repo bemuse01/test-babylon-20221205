@@ -1,16 +1,19 @@
 export default class{
-    constructor(){
+    constructor(src){
         this.param = {
             fft: 2 ** 14,
             smoothingTimeConstant: 0.65,
-            src: 'assets/src/Mirage.mp3'
+            src
         }
 
-        this.start = true
+        this.canPlay = false
+        this.nowPlaying = false
         this.sample = null
         this.duration = 0
         this.currentTime = 0
         this.avg = 0
+
+        this.context = null
 
         this.init()
     }
@@ -34,25 +37,27 @@ export default class{
         this.audio.volume = 1.0
 
         this.audio.addEventListener('canplaythrough', () => {
-            document.addEventListener('click', () => {this.createContext(), this.play()}, false)
+            this.canPlay = true
+            // document.addEventListener('click', () => {this.createContext(), this.play()}, false)
         })
     }
     createContext(){
-        if(this.start){
-            this.context = new AudioContext()
-            
-            const source = this.context.createMediaElementSource(this.audio)
-            
-            this.analyser = this.context.createAnalyser()
-            source.connect(this.analyser)
-            this.analyser.connect(this.context.destination)
-            this.analyser.fftSize = this.param.fft
-            this.analyser.smoothingTimeConstant = this.param.smoothingTimeConstant
-            
-            const bufferLength = this.analyser.frequencyBinCount
-            
-            this.audioData = new Uint8Array(bufferLength)
-        }
+        if(this.context) return
+        console.log('created')
+
+        this.context = new AudioContext()
+        
+        const source = this.context.createMediaElementSource(this.audio)
+        
+        this.analyser = this.context.createAnalyser()
+        source.connect(this.analyser)
+        this.analyser.connect(this.context.destination)
+        this.analyser.fftSize = this.param.fft
+        this.analyser.smoothingTimeConstant = this.param.smoothingTimeConstant
+        
+        const bufferLength = this.analyser.frequencyBinCount
+        
+        this.audioData = new Uint8Array(bufferLength)
     }
 
 
@@ -73,11 +78,22 @@ export default class{
 
     // play
     play(){
-        if(this.start){
+        if(!this.nowPlaying){
+            
+            if(!this.isReady()) return
+
+            this.createContext()
+
             this.audio.play()
             this.context.resume()
             this.duration = this.audio.duration
-            this.start = false
+            this.nowPlaying = true
         }
+    }
+
+
+    // 
+    isReady(){
+        return this.canPlay
     }
 }

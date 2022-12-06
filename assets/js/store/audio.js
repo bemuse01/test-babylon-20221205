@@ -7,12 +7,12 @@ export default {
         getAudio: (state) => state.audio,
     },
     mutations: {
-        setApp(state, newAudio){
+        setAudio(state, newAudio){
             state.audio = newAudio
         },
     },
     actions: {
-        setApp({commit}, newAudio){
+        setAudio({commit}, newAudio){
             commit('setAudio', newAudio)
         },
     },
