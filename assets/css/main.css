@@ -23,7 +23,7 @@ div#wrap{
 
 
 /* progress */
-div.progress{
+/* div.progress{
     position: absolute;
     left: 0;
     bottom: 0;
@@ -57,4 +57,4 @@ div.progress-bar > div{
 }
 div.progress:hover > div{
     transform: scaleY(0.4);
-}
+} */

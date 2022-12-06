@@ -9,7 +9,6 @@ export default class{
         this.canPlay = false
         this.nowPlaying = false
         this.sample = null
-        this.duration = 0
         this.currentTime = 0
         this.avg = 0
 
@@ -86,7 +85,6 @@ export default class{
 
             this.audio.play()
             this.context.resume()
-            this.duration = this.audio.duration
             this.nowPlaying = true
         }
     }
@@ -95,5 +93,11 @@ export default class{
     // 
     isReady(){
         return this.canPlay
+    }
+
+
+    // get
+    getProgress(){
+        return this.audio.currentTime / this.audio.duration
     }
 }
