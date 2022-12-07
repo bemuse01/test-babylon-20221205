@@ -2,11 +2,14 @@ const name = 'VisualizerParticle'
 
 const vertex = `
     attribute vec3 position;
+    attribute vec2 uv;
     uniform mat4 worldViewProjection;
 
     void main(){
         vec3 nPosition = position;
         // nPosition.xy *= 0.5;
+        // if(uv.x == 0.0) nPosition.x = 5.0;
+        // nPosition.x += 5.0;
 
         gl_Position = worldViewProjection * vec4(nPosition, 1.0);
     }
