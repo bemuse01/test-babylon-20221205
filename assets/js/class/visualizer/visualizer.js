@@ -1,3 +1,5 @@
+import Particle from './build/particle.js'
+
 export default class{
     constructor({app}){
         this.engine = app.engine
@@ -6,7 +8,7 @@ export default class{
         this.cameraPos = new BABYLON.Vector3(0, 0, -10)
 
         this.modules = {
-
+            Particle
         }
         this.comps = {}
 
