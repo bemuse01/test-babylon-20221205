@@ -41,7 +41,7 @@ export default class{
         for(const key in this.modules){
             const instance = this.modules[key]
 
-            this.comps[key] = new instance({scene: this.scene})
+            this.comps[key] = new instance({scene: this.scene, engine: this.engine})
         }
     }
 
