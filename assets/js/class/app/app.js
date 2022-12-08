@@ -10,7 +10,7 @@ export default class{
     init(){
         this.create()
 
-        window.addEventListener('resize', this.resize, false)
+        window.addEventListener('resize', () => this.resize(), false)
     }
 
 

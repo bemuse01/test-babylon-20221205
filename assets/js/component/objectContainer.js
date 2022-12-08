@@ -15,6 +15,7 @@ export default {
 
         // variables
         const app = computed(() => store.getters['app/getApp'])
+        const audio = computed(() => store.getters['audio/getAudio'])
 
         let visualizer = null
 
@@ -23,9 +24,9 @@ export default {
         onMounted(() => {
         })
 
-        watch(app, (cur, pre) => {
-            if(cur){
-                visualizer = new Visualizer({app: app.value})
+        watch([app, audio], ([curApp, curAudio], [preApp, preAudio]) => {
+            if(curApp && curAudio){
+                visualizer = new Visualizer({app: app.value, audio: audio.value})
             }
         })
 

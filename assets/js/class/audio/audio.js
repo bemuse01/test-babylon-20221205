@@ -62,6 +62,11 @@ export default class{
 
     // animate
     animate(){
+        this.render()
+
+        requestAnimationFrame(() => this.animate())
+    }
+    render(){
         if(!this.analyser) return
 
         this.analyser.getByteFrequencyData(this.audioData)
@@ -70,8 +75,6 @@ export default class{
         const half = [...this.audioData].slice(0, this.audioData.length)
         this.audioDataAvg = half.map(e => e / 255).reduce((x, y) => x + y) / len
         // this.audioDataAvg = half[~~(half.length * 0.1)] / 255
-
-        requestAnimationFrame(this.animate)
     }
 
 

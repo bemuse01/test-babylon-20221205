@@ -1,8 +1,9 @@
 import Particle from './build/particle.js'
 
 export default class{
-    constructor({app}){
+    constructor({app, audio}){
         this.engine = app.engine
+        this.audio = audio
 
         this.cameraName = 'visualizerCamaera'
         this.cameraPos = new BABYLON.Vector3(0, 0, -10)
@@ -41,7 +42,7 @@ export default class{
         for(const key in this.modules){
             const instance = this.modules[key]
 
-            this.comps[key] = new instance({scene: this.scene, engine: this.engine})
+            this.comps[key] = new instance({scene: this.scene, engine: this.engine, audio: this.audio})
         }
     }
 
