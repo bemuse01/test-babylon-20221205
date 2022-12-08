@@ -12,7 +12,7 @@ export default class{
         this.count = 720
         this.countStep = 120
         this.iter = 16
-        this.radius = 0.25
+        this.radius = 0.3
 
         this.init()
     }

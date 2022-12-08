@@ -34,7 +34,7 @@ const fragment = `
 
     void main(){
         // gl_FragColor = vec4(uColor, vOpacity);
-        gl_FragColor = vec4(uColor, 0.25);
+        gl_FragColor = vec4(uColor, 0.15);
     }
 `
 
