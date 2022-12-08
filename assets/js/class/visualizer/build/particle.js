@@ -1,4 +1,5 @@
 import ShaderName from '../shader/particle.shader.js'
+import Method from '../../../method/method.js'
 
 export default class{
     constructor({scene, engine, audio}){
@@ -7,11 +8,11 @@ export default class{
         this.audio = audio
 
         this.rad = 20
-        this.radStep = 0.1
+        this.radStep = 0.2
         this.count = 720
         this.countStep = 120
         this.iter = 16
-        this.radius = 0.2
+        this.radius = 0.25
 
         this.init()
     }
@@ -69,15 +70,18 @@ export default class{
     }
     createAttribute(SPS, numVertices){
         const {count, countStep, iter, rad, radStep} = this
-        let n = 0
+        const minRad = rad
+        const maxRad = rad + radStep * (iter - 1)
         const seedX = []
         const seedY = []
+        let n = 0
 
         for(let i = 0; i < iter; i++){
 
             const r = rad + radStep * i
             const c = count + countStep * i
             const deg = 360 / c
+            const nr = Method.normalize(r, 1, 2, minRad, maxRad)
 
             // const nr = Method.normalize(r, 1, 2, minRad, maxRad)
 
@@ -88,11 +92,11 @@ export default class{
                 const x = Math.cos(degree) * r
                 const y = Math.sin(degree) * r
 
-                // const nx = Math.cos(degree) * nr
-                // const ny = Math.sin(degree) * nr
+                const nx = Math.cos(degree) * nr
+                const ny = Math.sin(degree) * nr
 
-                seedX.push(...Array.from({length: numVertices}, _ => x))
-                seedY.push(...Array.from({length: numVertices}, _ => y))
+                seedX.push(...Array.from({length: numVertices}, _ => nx))
+                seedY.push(...Array.from({length: numVertices}, _ => ny))
 
                 particle.position.x = x
                 particle.position.y = y

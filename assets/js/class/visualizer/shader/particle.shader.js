@@ -21,10 +21,10 @@ const vertex = `
         // if(uv.x == 0.0) nPosition.x = 5.0;
         // nPosition.x += 5.0;
 
-        float nx = snoise3D(vec3(seedX * 0.02, seedY * 0.02, time * 0.00175));
-        float ny = snoise3D(vec3(seedX * 0.02 * 3.0, seedY * 0.02 * 3.0, time * 0.00175));
+        float nx = snoise3D(vec3(seedX * 0.2, seedY * 0.2, time * 0.00175));
+        float ny = snoise3D(vec3(seedX * 0.2 * 3.0, seedY * 0.2 * 3.0, time * 0.00175));
 
-        nPosition.xy += vec2(nx, ny) * audioDataAvg * 2.0;
+        nPosition.xy += vec2(nx, ny) * audioDataAvg * 6.0;
 
         gl_Position = worldViewProjection * vec4(nPosition, 1.0);
     }
@@ -34,7 +34,7 @@ const fragment = `
 
     void main(){
         // gl_FragColor = vec4(uColor, vOpacity);
-        gl_FragColor = vec4(uColor, 1.0);
+        gl_FragColor = vec4(uColor, 0.25);
     }
 `
 
