@@ -24,7 +24,7 @@ const vertex = `
         float nx = snoise3D(vec3(seedX * 0.2, seedY * 0.2, time * 0.00175));
         float ny = snoise3D(vec3(seedX * 0.2 * 3.0, seedY * 0.2 * 3.0, time * 0.00175));
 
-        nPosition.xy += vec2(nx, ny) * audioDataAvg * 0.25;
+        nPosition.xy += vec2(nx, ny) * audioDataAvg * 0.2;
 
         gl_Position = worldViewProjection * vec4(nPosition, 1.0);
     }
