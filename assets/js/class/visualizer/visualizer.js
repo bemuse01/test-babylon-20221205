@@ -6,7 +6,7 @@ export default class{
         this.audio = audio
 
         this.cameraName = 'visualizerCamaera'
-        this.cameraPos = new BABYLON.Vector3(0, 0, -10)
+        this.cameraPos = new BABYLON.Vector3(0, 0, -100)
 
         this.modules = {
             Particle

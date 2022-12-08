@@ -6,11 +6,12 @@ export default class{
         this.engine = engine
         this.audio = audio
 
-        this.rad = 2
-        this.radStep = 0.01
+        this.rad = 20
+        this.radStep = 0.1
         this.count = 720
         this.countStep = 120
         this.iter = 16
+        this.radius = 0.2
 
         this.init()
     }
@@ -30,7 +31,7 @@ export default class{
 
         const SPS = new BABYLON.SolidParticleSystem('SPS', this.scene);
         const circle = BABYLON.MeshBuilder.CreateDisc('disc', {
-            radius: 0.012,
+            radius: this.radius,
             tessellation: 4
         }, this.scene)
 
